@@ -28,9 +28,30 @@ class FillAreaDialogEx(FillAreaDialog.FillAreaDialog):
         self.m_Frequency.Hide()
         self.m_FenceOffsetLabel.Hide()
         self.m_FenceOffset.Hide()
+        
+        # Initialize the description text to match the default selection
+        self.UpdateProfileDescription()
+
+    def UpdateProfileDescription(self):
+        prof = self.m_Profile.GetStringSelection()
+        if prof == "General / Mechanical":
+            desc = "Standard via stitching. Provides solid ground connections across the board and prevents large copper islands from peeling. Uses standard pitch (e.g., 2.54mm)."
+        elif prof == "Thermal / High Current":
+            desc = "Optimized for heat dissipation and low resistance. Uses a denser grid (e.g., 1.27mm) and defaults to the largest available via size. Ideal under power components or large ICs."
+        elif prof == "RF / High-Speed":
+            desc = "Calculates via pitch based on wavelength (\u03bb/20) for the target frequency. Prevents resonance and electromagnetic emissions. Pitch adjusts automatically when frequency changes. Also use with Track Fencing pattern while highlighting a trace."
+        else:
+            desc = ""
+            
+        self.m_ProfileDesc.SetLabel(desc)
+        self.m_ProfileDesc.Wrap(420)
 
     def OnProfileChange(self, event):
         prof = self.m_Profile.GetStringSelection()
+        
+        # Update the description text based on the new selection
+        self.UpdateProfileDescription()
+        
         if prof == "RF / High-Speed":
             self.m_FreqLabel.Show()
             self.m_Frequency.Show()

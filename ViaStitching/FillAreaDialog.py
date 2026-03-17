@@ -43,6 +43,15 @@ class FillAreaDialog(wx.Dialog):
         fgProf.Add(self.m_Frequency, 1, wx.EXPAND | wx.ALL, 5)
         
         profBox.Add(fgProf, 1, wx.EXPAND, 5)
+        
+        # Add the dynamically updating description text below the inputs
+        self.m_ProfileDesc = wx.StaticText(self, wx.ID_ANY, u"Description will appear here.")
+        font = self.m_ProfileDesc.GetFont()
+        font.SetStyle(wx.FONTSTYLE_ITALIC)
+        self.m_ProfileDesc.SetFont(font)
+        self.m_ProfileDesc.Wrap(420)
+        profBox.Add(self.m_ProfileDesc, 0, wx.ALL | wx.EXPAND, 5)
+
         mainSizer.Add(profBox, 0, wx.EXPAND | wx.ALL, 10)
 
         # --- Group 3: Via Dimensions ---
