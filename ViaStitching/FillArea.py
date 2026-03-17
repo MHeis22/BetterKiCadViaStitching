@@ -248,10 +248,22 @@ class FillArea:
                         step_x = (dx / length) * (length / steps)
                         step_y = (dy / length) * (length / steps)
                         
+                        # Minimum distance squared to prevent overlapping vias at corners (75% of step)
+                        min_dist_sq = (self.step * 0.75) ** 2
+                        
                         for i in range(steps + 1):
                             px = p_start_x + step_x * i
                             py = p_start_y + step_y * i
-                            via_list.append(ViaObject(x=-1, y=-1, pos_x=px, pos_y=py))
+                            
+                            # Check against existing vias to prevent double placements at joints
+                            too_close = False
+                            for existing_via in via_list:
+                                if (existing_via.PosX - px)**2 + (existing_via.PosY - py)**2 < min_dist_sq:
+                                    too_close = True
+                                    break
+                                    
+                            if not too_close:
+                                via_list.append(ViaObject(x=-1, y=-1, pos_x=px, pos_y=py))
             else:
                 keep_going, _ = dlg.Update(5, "Generating Spatial Grid...")
                 global_board_bbox = self.pcb.ComputeBoundingBox(False)
