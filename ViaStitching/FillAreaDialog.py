@@ -1,180 +1,124 @@
 # -*- coding: utf-8 -*-
-
-###########################################################################
-## Python code generated with wxFormBuilder (version 4.2.1-0-g80c4cb6)
-## http://www.wxformbuilder.org/
-##
-## PLEASE DO *NOT* EDIT THIS FILE!
-###########################################################################
-
 import wx
-import wx.xrc
 
-###########################################################################
-## Class FillAreaDialog
-###########################################################################
-
-class FillAreaDialog ( wx.Dialog ):
-
-	def __init__( self, parent ):
-		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Fill Area parameters", pos = wx.DefaultPosition, size = wx.Size( 402,663 ), style = wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER )
-
-		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
-
-		bSizer3 = wx.BoxSizer( wx.VERTICAL )
-
-		fgSizer1 = wx.FlexGridSizer( 0, 2, 0, 0 )
-		fgSizer1.SetFlexibleDirection( wx.BOTH )
-		fgSizer1.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
-
-		self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, u"Via copper size (mm)", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText3.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText3, 1, wx.ALL|wx.EXPAND, 5 )
-
-		self.m_SizeMM = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_SizeMM.SetMinSize( wx.Size( 1000,-1 ) )
-
-		fgSizer1.Add( self.m_SizeMM, 1, wx.ALL|wx.EXPAND, 5 )
-
-		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"Via drill size (mm)", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText9.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText9, 1, wx.ALL|wx.EXPAND, 5 )
-
-		self.m_DrillMM = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer1.Add( self.m_DrillMM, 1, wx.ALL|wx.EXPAND, 5 )
-
-		self.m_staticText5 = wx.StaticText( self, wx.ID_ANY, u"Via clearance (mm)", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText5.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText5, 1, wx.ALL|wx.EXPAND, 5 )
-
-		self.m_ClearanceMM = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer1.Add( self.m_ClearanceMM, 1, wx.ALL|wx.EXPAND, 5 )
-
-		self.m_staticText2 = wx.StaticText( self, wx.ID_ANY, u"Via grid (mm)", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText2.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText2, 0, wx.ALL, 5 )
-
-		self.m_StepMM = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer1.Add( self.m_StepMM, 1, wx.ALL|wx.EXPAND, 5 )
-
-		self.m_staticTextGridType = wx.StaticText( self, wx.ID_ANY, u"Grid Origin", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticTextGridType.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticTextGridType, 0, wx.ALL, 5 )
-
-		m_cbGridTypeChoices = [ u"Board Bounds", u"Absolute (0, 0)", u"Grid Origin" ]
-		self.m_cbGridType = wx.ComboBox( self, wx.ID_ANY, u"Board Bounds", wx.DefaultPosition, wx.DefaultSize, m_cbGridTypeChoices, wx.CB_READONLY )
-		self.m_cbGridType.SetSelection( 0 )
-		fgSizer1.Add( self.m_cbGridType, 0, wx.ALL|wx.EXPAND, 5 )
-
-
-		fgSizer1.Add( ( 0, 0), 1, wx.EXPAND, 5 )
-
-		self.m_bitmapStitching = wx.StaticBitmap( self, wx.ID_ANY, wx.Bitmap( u"stitching-vias-help.png", wx.BITMAP_TYPE_ANY ), wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer1.Add( self.m_bitmapStitching, 0, wx.EXPAND, 5 )
-
-		self.m_staticText6 = wx.StaticText( self, wx.ID_ANY, u"Net name", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText6.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText6, 1, wx.ALL|wx.EXPAND, 5 )
-
-		m_cbNetChoices = []
-		self.m_cbNet = wx.ComboBox( self, wx.ID_ANY, u"GND", wx.DefaultPosition, wx.DefaultSize, m_cbNetChoices, wx.CB_READONLY )
-		fgSizer1.Add( self.m_cbNet, 1, wx.ALL|wx.EXPAND, 5 )
-
-		self.m_staticText42 = wx.StaticText( self, wx.ID_ANY, u"Pattern", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText42.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText42, 0, wx.ALL, 5 )
-
-		m_cbFillTypeChoices = [ u"Concentric", u"Outline", u"Outline (No Holes)", u"Rectangular", u"Star" ]
-		self.m_cbFillType = wx.ComboBox( self, wx.ID_ANY, u"Rectangular", wx.DefaultPosition, wx.DefaultSize, m_cbFillTypeChoices, wx.CB_READONLY )
-		self.m_cbFillType.SetSelection( 3 )
-		fgSizer1.Add( self.m_cbFillType, 0, wx.ALL, 5 )
-
-		self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Random it", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText8.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText8, 0, wx.ALL, 5 )
-
-		self.m_Random = wx.CheckBox( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer1.Add( self.m_Random, 0, wx.ALL, 5 )
-
-		self.m_staticText81 = wx.StaticText( self, wx.ID_ANY, u"Only under selected Zone", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText81.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText81, 0, wx.ALL, 5 )
-
-		self.m_only_selected = wx.CheckBox( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer1.Add( self.m_only_selected, 0, wx.ALL, 5 )
-
-		self.m_staticText71 = wx.StaticText( self, wx.ID_ANY, u"Ignore areas on other layers", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText71.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText71, 0, wx.ALL, 5 )
-
-		self.m_viaThroughAreas = wx.CheckBox( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer1.Add( self.m_viaThroughAreas, 0, wx.ALL, 5 )
-
-		self.m_staticText72 = wx.StaticText( self, wx.ID_ANY, u"Also on tracks with same net", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText72.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText72, 0, wx.ALL, 5 )
-
-		self.m_sameNetTracks = wx.CheckBox( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer1.Add( self.m_sameNetTracks, 0, wx.ALL, 5 )
-
-		self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"Debug mode", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText7.Wrap( -1 )
-
-		fgSizer1.Add( self.m_staticText7, 1, wx.ALL|wx.EXPAND, 5 )
-
-		self.m_Debug = wx.CheckBox( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer1.Add( self.m_Debug, 1, wx.ALL|wx.EXPAND, 5 )
-
-
-		bSizer3.Add( fgSizer1, 1, wx.EXPAND, 5 )
-
-		bSizer1 = wx.BoxSizer( wx.HORIZONTAL )
-
-		self.m_staticText101 = wx.StaticText( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText101.Wrap( -1 )
-
-		bSizer1.Add( self.m_staticText101, 1, wx.ALL, 5 )
-
-		self.m_button1 = wx.Button( self, wx.ID_OK, u"Run", wx.DefaultPosition, wx.DefaultSize, 0 )
-
-		self.m_button1.SetDefault()
-		bSizer1.Add( self.m_button1, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
-
-		self.m_button2 = wx.Button( self, wx.ID_CANCEL, u"Cancel", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer1.Add( self.m_button2, 0, wx.ALL, 5 )
-
-		self.m_button3_delete = wx.Button( self, wx.ID_DELETE, u"Delete Vias", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer1.Add( self.m_button3_delete, 0, wx.ALL, 5 )
-
-
-		bSizer3.Add( bSizer1, 0, wx.EXPAND|wx.ALIGN_RIGHT, 5 )
-
-
-		self.SetSizer( bSizer3 )
-		self.Layout()
-
-		self.Centre( wx.BOTH )
-
-		# Connect Events
-		self.m_button3_delete.Bind( wx.EVT_BUTTON, self.onDeleteClick )
-
-	def __del__( self ):
-		pass
-
-
-	# Virtual event handlers, override them in your derived class
-	def onDeleteClick( self, event ):
-		event.Skip()
-
-
+class FillAreaDialog(wx.Dialog):
+    def __init__(self, parent):
+        wx.Dialog.__init__(self, parent, id=wx.ID_ANY, title=u"Via Stitching Parameters", pos=wx.DefaultPosition, size=wx.Size(480, 800), style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER)
+        
+        mainSizer = wx.BoxSizer(wx.VERTICAL)
+        
+        self.m_bitmapStitching = wx.StaticBitmap(self, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.DefaultSize, 0)
+        mainSizer.Add(self.m_bitmapStitching, 0, wx.ALIGN_CENTER_HORIZONTAL | wx.ALL, 10)
+
+        # --- Group 1: Target ---
+        targetBox = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, u"Target Zone / Net"), wx.VERTICAL)
+        fgTarget = wx.FlexGridSizer(0, 2, 8, 8)
+        fgTarget.AddGrowableCol(1)
+        
+        fgTarget.Add(wx.StaticText(self, wx.ID_ANY, u"Net Name:"), 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.m_cbNet = wx.ComboBox(self, wx.ID_ANY, u"GND", choices=[], style=wx.CB_READONLY)
+        fgTarget.Add(self.m_cbNet, 1, wx.EXPAND | wx.ALL, 5)
+
+        fgTarget.Add(wx.StaticText(self, wx.ID_ANY, u"Fill Pattern:"), 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        # Reduced choices to the essentials
+        self.m_cbFillType = wx.ComboBox(self, wx.ID_ANY, u"Rectangular", choices=[u"Rectangular", u"Hexagonal", u"Track Fencing"], style=wx.CB_READONLY)
+        self.m_cbFillType.SetSelection(0)
+        fgTarget.Add(self.m_cbFillType, 1, wx.EXPAND | wx.ALL, 5)
+        
+        targetBox.Add(fgTarget, 1, wx.EXPAND, 5)
+        mainSizer.Add(targetBox, 0, wx.EXPAND | wx.ALL, 10)
+
+        # --- Group 2: Stitching Profile ---
+        profBox = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, u"Stitching Profile"), wx.VERTICAL)
+        fgProf = wx.FlexGridSizer(0, 2, 8, 8)
+        fgProf.AddGrowableCol(1)
+        
+        fgProf.Add(wx.StaticText(self, wx.ID_ANY, u"Application / Logic:"), 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.m_Profile = wx.ComboBox(self, wx.ID_ANY, u"General / Mechanical", choices=[u"General / Mechanical", u"Thermal / High Current", u"RF / High-Speed"], style=wx.CB_READONLY)
+        fgProf.Add(self.m_Profile, 1, wx.EXPAND | wx.ALL, 5)
+        
+        self.m_FreqLabel = wx.StaticText(self, wx.ID_ANY, u"Max Target Freq. (GHz):")
+        fgProf.Add(self.m_FreqLabel, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.m_Frequency = wx.TextCtrl(self, wx.ID_ANY, u"2.4")
+        fgProf.Add(self.m_Frequency, 1, wx.EXPAND | wx.ALL, 5)
+        
+        profBox.Add(fgProf, 1, wx.EXPAND, 5)
+        mainSizer.Add(profBox, 0, wx.EXPAND | wx.ALL, 10)
+
+        # --- Group 3: Via Dimensions ---
+        dimBox = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, u"Via Dimensions"), wx.VERTICAL)
+        fgDim = wx.FlexGridSizer(0, 2, 8, 8)
+        fgDim.AddGrowableCol(1)
+        
+        fgDim.Add(wx.StaticText(self, wx.ID_ANY, u"Board Defined Vias:"), 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.m_ViaSelection = wx.ComboBox(self, wx.ID_ANY, choices=[], style=wx.CB_READONLY)
+        fgDim.Add(self.m_ViaSelection, 1, wx.EXPAND | wx.ALL, 5)
+
+        fgDim.Add(wx.StaticText(self, wx.ID_ANY, u"Outer Diameter (mm):"), 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.m_SizeMM = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString)
+        fgDim.Add(self.m_SizeMM, 1, wx.EXPAND | wx.ALL, 5)
+        
+        fgDim.Add(wx.StaticText(self, wx.ID_ANY, u"Hole Diameter (mm):"), 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.m_DrillMM = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString)
+        fgDim.Add(self.m_DrillMM, 1, wx.EXPAND | wx.ALL, 5)
+        
+        fgDim.Add(wx.StaticText(self, wx.ID_ANY, u"Via Clearance (mm):"), 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.m_ClearanceMM = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString)
+        fgDim.Add(self.m_ClearanceMM, 1, wx.EXPAND | wx.ALL, 5)
+
+        fgDim.Add(wx.StaticText(self, wx.ID_ANY, u"Extra Safe Clearance:"), 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.m_ExtraClearance = wx.TextCtrl(self, wx.ID_ANY, u"0.0")
+        fgDim.Add(self.m_ExtraClearance, 1, wx.EXPAND | wx.ALL, 5)
+
+        fgDim.Add(wx.StaticText(self, wx.ID_ANY, u"Via Grid / Pitch (mm):"), 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.m_StepMM = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString)
+        fgDim.Add(self.m_StepMM, 1, wx.EXPAND | wx.ALL, 5)
+        
+        self.m_FenceOffsetLabel = wx.StaticText(self, wx.ID_ANY, u"Fence Offset (mm):")
+        fgDim.Add(self.m_FenceOffsetLabel, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.m_FenceOffset = wx.TextCtrl(self, wx.ID_ANY, u"1.0")
+        fgDim.Add(self.m_FenceOffset, 1, wx.EXPAND | wx.ALL, 5)
+
+        dimBox.Add(fgDim, 1, wx.EXPAND, 5)
+        mainSizer.Add(dimBox, 0, wx.EXPAND | wx.ALL, 10)
+
+        # --- Group 4: Constraints ---
+        constBox = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, u"Constraints"), wx.VERTICAL)
+        
+        self.m_only_selected = wx.CheckBox(self, wx.ID_ANY, u"Only apply under selected Zone")
+        constBox.Add(self.m_only_selected, 0, wx.ALL, 6)
+        
+        self.m_viaThroughAreas = wx.CheckBox(self, wx.ID_ANY, u"Ignore areas on other layers")
+        constBox.Add(self.m_viaThroughAreas, 0, wx.ALL, 6)
+        
+        self.m_sameNetTracks = wx.CheckBox(self, wx.ID_ANY, u"Allow vias on tracks with same net")
+        constBox.Add(self.m_sameNetTracks, 0, wx.ALL, 6)
+        
+        self.m_avoidSameNetPads = wx.CheckBox(self, wx.ID_ANY, u"Prevent vias on same net pads")
+        self.m_avoidSameNetPads.SetValue(True)
+        constBox.Add(self.m_avoidSameNetPads, 0, wx.ALL, 6)
+        
+        self.m_AutoRefill = wx.CheckBox(self, wx.ID_ANY, u"Automatically refill zones")
+        self.m_AutoRefill.SetValue(True)
+        constBox.Add(self.m_AutoRefill, 0, wx.ALL, 6)
+        
+        mainSizer.Add(constBox, 0, wx.EXPAND | wx.ALL, 10)
+
+        # --- Buttons ---
+        btnSizer = wx.BoxSizer(wx.HORIZONTAL)
+        self.m_button1 = wx.Button(self, wx.ID_OK, u"Run")
+        self.m_button1.SetDefault()
+        btnSizer.Add(self.m_button1, 0, wx.ALL, 5)
+        
+        self.m_button2 = wx.Button(self, wx.ID_CANCEL, u"Cancel")
+        btnSizer.Add(self.m_button2, 0, wx.ALL, 5)
+        
+        mainSizer.Add(btnSizer, 0, wx.ALIGN_RIGHT | wx.ALL, 10)
+
+        self.SetSizer(mainSizer)
+        self.Layout()
+        
+        current_size = self.GetSize()
+        self.SetSize(wx.Size(current_size.x + 30, current_size.y + 40))
+        self.SetMinSize(self.GetSize())
+        self.Centre(wx.BOTH)

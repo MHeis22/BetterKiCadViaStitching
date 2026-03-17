@@ -1,0 +1,1 @@
+{"step": "2.54", "size": "0.5", "drill": "0.2", "clearance": "0.25", "extra_clearance": "0.0", "fence_offset": "1.0", "netname": "V-", "fill_type": "Hexagonal", "only_selected": false, "viaThroughAreas": true, "sameNetTracks": false, "avoidSameNetPads": true, "auto_refill": true, "profile": "General / Mechanical", "frequency": "5.0"}
