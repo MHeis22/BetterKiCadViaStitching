@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from pcbnew import *
+import pcbnew
 import sys
 import os
 import wx
@@ -135,7 +136,20 @@ class FillArea:
             if self.target_net is None:
                 self.target_net = self.pcb.FindNet(self.netname)
             m.SetNet(self.target_net)
-            m.SetViaType(VIATYPE_THROUGH)
+            
+            # --- API COMPATIBILITY FIX FOR KICAD 8/9/10 ENUMS ---
+            via_type = None
+            if hasattr(pcbnew, 'VIATYPE_THROUGH'):
+                via_type = pcbnew.VIATYPE_THROUGH
+            elif hasattr(pcbnew, 'VIATYPE') and hasattr(pcbnew.VIATYPE, 'THROUGH'):
+                via_type = pcbnew.VIATYPE.THROUGH
+            elif hasattr(pcbnew, 'PCB_VIA_VIATYPE_THROUGH'):
+                via_type = pcbnew.PCB_VIA_VIATYPE_THROUGH
+            
+            if via_type is not None:
+                m.SetViaType(via_type)
+            # ----------------------------------------------------
+            
             m.SetDrill(int(self.drill))
             m.SetWidth(int(self.size))
             m.SetIsFree(True)
@@ -202,7 +216,16 @@ class FillArea:
                 self.parent_area = target_areas[0]
 
             board_edge = SHAPE_POLY_SET()
-            self.pcb.GetBoardPolygonOutlines(board_edge)
+            
+            # --- API COMPATIBILITY FIX FOR KICAD 10 ---
+            try:
+                # KiCad 10 requires an explicit boolean 'aInferOutlineIfNecessary'
+                self.pcb.GetBoardPolygonOutlines(board_edge, True)
+            except TypeError:
+                # KiCad 9 and older versions
+                self.pcb.GetBoardPolygonOutlines(board_edge)
+            # ------------------------------------------
+            
             b_clearance = max(self.pcb.GetDesignSettings().m_CopperEdgeClearance, self.clearance) + self.size
             board_edge.Deflate(int(b_clearance), CORNER_STRATEGY_ROUND_ALL_CORNERS, FromMM(0.01))
 
@@ -374,8 +397,17 @@ class FillArea:
             if not keep_going: return
 
             pad_count = len(all_pads)
+            
+            # --- API COMPATIBILITY FIX FOR DUMMY VIA ENUMS ---
             dummy_via = PCB_VIA(self.parent_area)
-            dummy_via.SetViaType(VIATYPE_THROUGH)
+            if hasattr(pcbnew, 'VIATYPE_THROUGH'):
+                dummy_via.SetViaType(pcbnew.VIATYPE_THROUGH)
+            elif hasattr(pcbnew, 'VIATYPE') and hasattr(pcbnew.VIATYPE, 'THROUGH'):
+                dummy_via.SetViaType(pcbnew.VIATYPE.THROUGH)
+            elif hasattr(pcbnew, 'PCB_VIA_VIATYPE_THROUGH'):
+                dummy_via.SetViaType(pcbnew.PCB_VIA_VIATYPE_THROUGH)
+            # -------------------------------------------------
+            
             dummy_via.SetDrill(int(self.drill))
             dummy_via.SetWidth(int(self.size))
             
