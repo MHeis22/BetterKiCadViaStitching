@@ -210,6 +210,21 @@ class FillArea:
                 all_drawings = []
 
             all_areas = [self.pcb.GetArea(i) for i in range(self.pcb.GetAreaCount())]
+            try:
+                footprints = self.pcb.GetFootprints()
+            except AttributeError:
+                try:
+                    footprints = self.pcb.GetModules()
+                except AttributeError:
+                    footprints = []
+            for fp in footprints:
+                zones_func = getattr(fp, "Zones", getattr(fp, "GetZones", None))
+                if zones_func is not None:
+                    try:
+                        for zone in zones_func():
+                            all_areas.append(zone)
+                    except Exception:
+                        pass
             target_areas = list(filter(lambda x: (x.GetNetname() == self.netname), all_areas))
 
             if target_areas and self.parent_area is None:
