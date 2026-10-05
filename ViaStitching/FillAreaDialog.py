@@ -188,3 +188,9 @@ class FillAreaDialog(wx.Dialog):
         self.m_scroll.FitInside()
         self.Layout()
         self.Centre(wx.BOTH)
+        # Centring on the KiCad window can push the dialog past the screen edge
+        # (e.g. when the editor window sits low): keep it fully on the display.
+        pos = self.GetPosition()
+        x = min(max(pos.x, area.x), area.x + area.width - w)
+        y = min(max(pos.y, area.y), area.y + area.height - h)
+        self.SetPosition(wx.Point(x, y))

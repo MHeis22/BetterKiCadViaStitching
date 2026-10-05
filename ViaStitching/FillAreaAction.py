@@ -256,6 +256,8 @@ class FillAreaAction(pcbnew.ActionPlugin):
         except Exception:
             pass
 
+        # Re-fit now that the help image, via list and saved settings are loaded
+        a.FitToScreen()
         if a.ShowModal() != wx.ID_OK:
             return
 
