@@ -10,10 +10,6 @@ from collections import defaultdict
 import wx
 
 
-def wxPrint(msg):
-    wx.LogMessage(msg)
-
-
 # --- API compatibility helpers (KiCad 8 / 9 / 10) -------------------------
 
 def _local_clearance(item):
@@ -353,7 +349,7 @@ class FillArea:
             filler = ZONE_FILLER(self.pcb)
             filler.Fill(zones)
         except Exception as e:
-            wxPrint("Could not automatically fill zones: " + str(e))
+            self.warnings.append("Could not refill zones automatically ({}). Press B to refill.".format(e))
 
     def Summary(self):
         if self.error:
@@ -484,7 +480,9 @@ class FillArea:
                     self._add_fence_point(index, board_edge, pt.x, pt.y, min_spacing)
             return
         except Exception:
-            wxPrint("Polygon fence failed, falling back to per-segment fence:\n" + traceback.format_exc())
+            # Logged to the scripting console only; the result dialog shows the warning
+            print("ViaStitching: polygon fence failed, using per-segment fence\n" + traceback.format_exc())
+            self.warnings.append("Used the simpler per-segment fence (polygon fence failed).")
 
         for track in tracks:
             if track.GetClass() != "PCB_TRACK":
@@ -995,13 +993,12 @@ class FillArea:
                                  VECTOR2I(max(xs) - min(xs) + 2 * margin, max(ys) - min(ys) + 2 * margin))
                     self.RefillBoardAreas(bbox)
 
-            wxPrint(self.Summary())
             if self.filename:
                 self.pcb.Save(self.filename)
 
         except Exception:
             self.error = traceback.format_exc()
-            wxPrint("Error during execution:\n" + self.error)
+            print("ViaStitching error:\n" + self.error)
         finally:
             dlg.Destroy()
 
