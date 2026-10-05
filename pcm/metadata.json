@@ -1,0 +1,34 @@
+{
+  "$schema": "https://go.kicad.org/pcm/schemas/v1",
+  "name": "Better Via Stitching",
+  "description": "Fast, DRC-safe via stitching for zones (rectangular or hexagonal grid) and via fencing along selected tracks.",
+  "description_full": "Via stitching and track fencing for KiCad PCB editor.\n\n- Rectangular or hexagonal stitching grids for any net with a zone\n- Track fencing along selected tracks and arcs, continuous around bends\n- Grid alignment optimisation fits more vias around pads and existing vias\n- Respects copper, hole and edge clearances, via keepouts, copper text and graphics\n- Never pinches other nets' planes below the minimum connection width and keeps thermal-relief spokes intact\n- Profiles for general, thermal and RF (lambda/20 pitch) stitching\n- Reports how many positions were rejected and why\n\nBased on the ViaStitching plugin by Jean-Samuel Reynaud and contributors.",
+  "identifier": "com.github.MHeis22.BetterKiCadViaStitching",
+  "type": "plugin",
+  "author": {
+    "name": "Manu Heiskanen",
+    "contact": {
+      "github": "https://github.com/MHeis22"
+    }
+  },
+  "maintainer": {
+    "name": "Manu Heiskanen",
+    "contact": {
+      "github": "https://github.com/MHeis22"
+    }
+  },
+  "license": "GPL-3.0",
+  "resources": {
+    "homepage": "https://github.com/MHeis22/BetterKiCadViaStitching"
+  },
+  "tags": ["pcb", "vias", "stitching", "fencing", "rf"],
+  "keep_on_update": ["viastitching_config\\.json"],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "status": "stable",
+      "kicad_version": "9.0",
+      "runtime": "swig"
+    }
+  ]
+}
